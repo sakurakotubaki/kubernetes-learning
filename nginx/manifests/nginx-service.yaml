@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+  labels:
+    app: nginx
+spec:
+  type: NodePort  # クラスタ外部からアクセス可能なNodePortタイプ
+  selector:
+    app: nginx  # app=nginxラベルを持つPodを選択
+  ports:
+  - port: 80  # サービスが受け付けるポート
+    targetPort: 80  # コンテナ側のポート
+    protocol: TCP
+    name: http
